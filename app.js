@@ -81,10 +81,10 @@ const menu = [
   },
 ];
 
-const display = ()=> {
+const display = (data)=> {
 
 
- let display =  menu.map((v)=>{
+ let display =  data.map((v)=>{
 
     return `   <article class="menu-item">
     <img src="${v.img}" alt="menu item" class="photo" />
@@ -119,7 +119,8 @@ const display = ()=> {
 
   let buttons = category.map((p)=> {
 
-    return `<button type="button" class="filter-btn" data-id="breakfast">
+    return `<button type="button" class="filter-btn"
+     data-id="breakfast" onclick="filterData('${p}')">
     ${p}
   </button>`
   })
@@ -133,4 +134,18 @@ document.getElementById("menu").innerHTML = display.join(" ");
 
 }
 
-display();
+display(menu);
+
+
+filterData= (category)=> {
+
+  const filterData = menu.filter((y)=>{
+
+    return y.category === category;
+  })
+
+
+  display(filterData)
+}
+
+
